@@ -7,22 +7,29 @@ public class StringUtils {
      * 7 characters. All should be lowercase.
      * Ex: a = "Sean ", b = "Flannery", returns "sflanner"
      */
+    static String res = "";
     public static String makePurdueUsername(String firstName, String lastName) {
         /* Generate the long version of the name first:
             Ex: firstName = "Sean", lastName = "Flannery"
                     --> res = "SFlannery"
          */
         String res = firstName.substring(0,1) + lastName;
+        System.out.println(lastName);
         /* Shorten the string to 8 characters
             Ex: res = "SFlannery"
                     --> res = "SFlanner"
          */
-        res.substring(0, 8);
+        res = res.substring(0, res.length()-1);
+        if (res.length()-1 < 8) {
+            res = res + lastName.substring(lastName.length()-1);
+        } else {
+            res = res.substring(0,8);
+        }
         /* Convert the name to lower-case
             Ex: res = "SFlanner"
                     --> res = "sflanner"
          */
-        res.toLowerCase();
+        res = res.toLowerCase();
         /* return the result of our calculation */
         return res;
     }
@@ -35,7 +42,8 @@ public class StringUtils {
      * username = "[DATA EXPUNGED] was among the students whose SSNs were leaked.",
      */
     public static String replaceStudentUsername(String text, String username) {
+        username.toLowerCase();
         /* Replace every instance of the username with proper message */
-        return text.replaceAll(username, "[DATA EXPUNDGED]");
+        return text.replaceAll(username.toLowerCase(), "[DATA EXPUNGED]");
     }
 }
